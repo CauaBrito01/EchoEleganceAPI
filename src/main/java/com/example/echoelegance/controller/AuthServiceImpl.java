@@ -22,7 +22,10 @@ public class AuthServiceImpl implements AuthService {
             Usuario usuario = usuarioOptional.get();
             // Autenticação bem-sucedida, retorne a página de home (ou o que for apropriado)
             System.out.println("Autenticação bem-sucedida");
-            return "/home";
+            List<String> Result = new ArrayList<>();
+            Result.add(IdUsuario);
+            Result.add("/home");
+            return Result;
         } else {
             // Autenticação falhou
             System.err.println("Autenticação falhou");
