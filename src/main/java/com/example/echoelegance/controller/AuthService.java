@@ -1,7 +1,6 @@
 package com.example.echoelegance.controller;
 
-// AuthService.java
 public interface AuthService {
-    String authenticate(String emailUsuario, String senhaUsuario);
+    Object authenticate(String emailUsuario, String senhaUsuario, int IdUsuario);
 }
 

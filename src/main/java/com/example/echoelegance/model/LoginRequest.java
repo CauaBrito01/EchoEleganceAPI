@@ -3,8 +3,17 @@ package com.example.echoelegance.model;
 public class LoginRequest {
     private String emailUsuario;
     private String senhaUsuario;
+    private int IdUsuario;
 
     // Construtor, getters e setters
+
+    public int getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
+    }
 
     public String getEmailUsuario() {
         return emailUsuario;
