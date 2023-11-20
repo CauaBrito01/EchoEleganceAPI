@@ -14,7 +14,7 @@ public class AuthServiceImpl implements AuthService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public Object authenticate(String emailUsuario, String senhaUsuario, int IdUsuario) {
+    public authResult authenticate(String emailUsuario, String senhaUsuario, int IdUsuario) {
         System.out.println("Autenticando usuário: " + emailUsuario + " senha: " + senhaUsuario);
         Optional<Usuario> usuarioOptional = usuarioRepository.findByEmailUsuarioAndSenhaUsuarioAndIdUsuario(emailUsuario, senhaUsuario, IdUsuario);
 
@@ -22,14 +22,32 @@ public class AuthServiceImpl implements AuthService {
             Usuario usuario = usuarioOptional.get();
             // Autenticação bem-sucedida, retorne a página de home (ou o que for apropriado)
             System.out.println("Autenticação bem-sucedida");
-            List<String> Result = new ArrayList<>();
-            Result.add(IdUsuario);
-            Result.add("/home");
-            return Result;
+            // Criar uma instância da classe AuthResult para conter ambos os valores
+            AuthResult authResult = new AuthResult("/home", IdUsuario);
+            return authResult;
         } else {
             // Autenticação falhou
             System.err.println("Autenticação falhou");
             return null;
+        }
+    }
+}
+
+ public static class AuthResult {
+        private String returnUrl;
+        private int userId;
+
+        public AuthResult(String returnUrl, int userId) {
+            this.returnUrl = returnUrl;
+            this.userId = userId;
+        }
+
+        public String getReturnUrl() {
+            return returnUrl;
+        }
+
+        public int getUserId() {
+            return userId;
         }
     }
 }
